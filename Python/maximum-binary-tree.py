@@ -16,8 +16,8 @@
 #       6
 #     /   \
 #    3     5
-#     \    / 
-#      2  0   
+#     \    /
+#      2  0
 #        \
 #         1
 # Note:
@@ -25,11 +25,12 @@
 
 
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
+class TreeNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 
 class Solution(object):
     def constructMaximumBinaryTree(self, nums):

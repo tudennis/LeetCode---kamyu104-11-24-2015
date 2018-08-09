@@ -1,8 +1,9 @@
+from __future__ import print_function
 # Time:  O(n)
 # Space: O(n)
 #
 # Given preorder and inorder traversal of a tree, construct the binary tree.
-# 
+#
 # Note:
 # You may assume that duplicates do not exist in the tree.
 #
@@ -23,7 +24,7 @@ class Solution:
         for i, num in enumerate(inorder):
             lookup[num] = i
         return self.buildTreeRecu(lookup, preorder, inorder, 0, 0, len(inorder))
-    
+
     def buildTreeRecu(self, lookup, preorder, inorder, pre_start, in_start, in_end):
         if in_start == in_end:
             return None
@@ -37,6 +38,6 @@ if __name__ ==  "__main__":
     preorder = [1, 2, 3]
     inorder = [2, 1, 3]
     result = Solution().buildTree(preorder, inorder)
-    print result.val
-    print result.left.val
-    print result.right.val
+    print(result.val)
+    print(result.left.val)
+    print(result.right.val)

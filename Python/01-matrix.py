@@ -4,7 +4,7 @@
 # Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell.
 # The distance between two adjacent cells is 1.
 #
-# Example 1: 
+# Example 1:
 #
 # Input:
 # 0 0 0
@@ -16,7 +16,7 @@
 # 0 1 0
 # 0 0 0
 #
-# Example 2: 
+# Example 2:
 #
 # Input:
 # 0 0 0
@@ -32,6 +32,14 @@
 # The number of elements of the given matrix will not exceed 10,000.
 # There are at least one 0 in the given matrix.
 # The cells are adjacent in only four directions: up, down, left and right.
+
+import collections
+
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
+
 
 class Solution(object):
     def updateMatrix(self, matrix):
@@ -57,5 +65,36 @@ class Solution(object):
                         continue
                 queue.append((i, j))
                 matrix[i][j] = matrix[cell[0]][cell[1]]+1
-        
+
         return matrix
+
+
+# Time:  O(m * n)
+# Space: O(m * n)
+# dp solution
+class Solution2(object):
+    def updateMatrix(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        dp = [[float("inf")]*len(matrix[0]) for _ in xrange(len(matrix))]
+        for i in xrange(len(matrix)):
+            for j in xrange(len(matrix[i])):
+                if matrix[i][j] == 0:
+                    dp[i][j] = 0
+                else:
+                    if i > 0:
+                        dp[i][j] = min(dp[i][j], dp[i-1][j]+1)
+                    if j > 0:
+                        dp[i][j] = min(dp[i][j], dp[i][j-1]+1)
+        for i in reversed(xrange(len(matrix))):
+            for j in reversed(xrange(len(matrix[i]))):
+                if matrix[i][j] == 0:
+                    dp[i][j] = 0
+                else:
+                    if i < len(matrix)-1:
+                        dp[i][j] = min(dp[i][j], dp[i+1][j]+1)
+                    if j < len(matrix[i])-1:
+                        dp[i][j] = min(dp[i][j], dp[i][j+1]+1)
+        return dp

@@ -1,8 +1,9 @@
+from __future__ import print_function
 # Time:  O(m * n)
 # Space: O(m + n)
 #
 # Given two numbers represented as strings, return multiplication of the numbers as a string.
-# 
+#
 # Note: The numbers can be arbitrarily large and are non-negative.
 #
 
@@ -42,4 +43,4 @@ class Solution2(object):
 
 
 if __name__ == "__main__":
-    print Solution().multiply("123", "1000")
+    print(Solution().multiply("123", "1000"))

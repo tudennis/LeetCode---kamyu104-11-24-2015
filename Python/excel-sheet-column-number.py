@@ -1,19 +1,20 @@
+from __future__ import print_function
 # Time:  O(n)
 # Space: O(1)
 
 # Related to question Excel Sheet Column Title
-# 
+#
 # Given a column title as appear in an Excel sheet, return its corresponding column number.
-# 
+#
 # For example:
-# 
+#
 #     A -> 1
 #     B -> 2
 #     C -> 3
 #     ...
 #     Z -> 26
 #     AA -> 27
-#     AB -> 28 
+#     AB -> 28
 
 class Solution(object):
     def titleToNumber(self, s):
@@ -29,4 +30,4 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    print Solution().titleToNumber("AAAB")
+    print(Solution().titleToNumber("AAAB"))

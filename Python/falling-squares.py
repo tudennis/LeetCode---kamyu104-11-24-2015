@@ -3,7 +3,7 @@
 
 # On an infinite number line (x-axis), we drop given squares in the order they are given.
 #
-# The i-th square dropped (positions[i] = (left, side_length)) is a square 
+# The i-th square dropped (positions[i] = (left, side_length)) is a square
 # with the left-most point being positions[i][0] and sidelength positions[i][1].
 #
 # The square is dropped with the bottom edge parallel to the number line,
@@ -22,14 +22,14 @@
 # Output: [2, 5, 5]
 # Explanation:
 #
-# After the first drop of 
+# After the first drop of
 # positions[0] = [1, 2]:
 # _aa
 # _aa
 # -------
 # The maximum height of any square is 2.
 #
-# After the second drop of 
+# After the second drop of
 # positions[1] = [2, 3]:
 # __aaa
 # __aaa
@@ -37,11 +37,11 @@
 # _aa__
 # _aa__
 # --------------
-# The maximum height of any square is 5.  
+# The maximum height of any square is 5.
 # The larger square stays on top of the smaller square despite where its center
 # of gravity is, because squares are infinitely sticky on their bottom edge.
 #
-# After the third drop of 
+# After the third drop of
 # positions[1] = [6, 1]:
 # __aaa
 # __aaa
@@ -51,7 +51,7 @@
 # --------------
 # The maximum height of any square is still 5.
 #
-# Thus, we return an answer of 
+# Thus, we return an answer of
 # [2, 5, 5]
 # .
 #
@@ -64,6 +64,28 @@
 # 1 <= positions.length <= 1000.
 # 1 <= positions[0] <= 10^8.
 # 1 <= positions[1] <= 10^6.
+
+# Time:  O(nlogn) ~ O(n^2)
+# Space: O(n)
+import bisect
+
+
+class Solution(object):
+    def fallingSquares(self, positions):
+        result = []
+        pos = [-1]
+        heights = [0]
+        maxH = 0
+        for left, side in positions:
+            l = bisect.bisect_right(pos, left)
+            r = bisect.bisect_left(pos, left+side)
+            high = max(heights[l-1:r] or [0]) + side
+            pos[l:r] = [left, left+side]         # Time: O(n)
+            heights[l:r] = [high, heights[r-1]]  # Time: O(n)
+            maxH = max(maxH, high)
+            result.append(maxH)
+        return result
+
 
 class SegmentTree(object):
     def __init__(self, N, update_fn, query_fn):
@@ -127,8 +149,10 @@ class SegmentTree(object):
         return result
 
 
+# Time:  O(nlogn)
+# Space: O(n)
 # Segment Tree solution.
-class Solution(object):
+class Solution2(object):
     def fallingSquares(self, positions):
         index = set()
         for left, size in positions:
@@ -149,7 +173,7 @@ class Solution(object):
 
 # Time:  O(n * sqrt(n))
 # Space: O(n)
-class Solution2(object):
+class Solution3(object):
     def fallingSquares(self, positions):
         def query(heights, left, right, B, blocks, blocks_read):
             result = 0
@@ -187,7 +211,7 @@ class Solution2(object):
         heights = [0] * W
         blocks = [0] * (B+2)
         blocks_read = [0] * (B+2)
-        
+
         max_height = 0
         result = []
         for left, size in positions:
@@ -201,7 +225,7 @@ class Solution2(object):
 
 # Time:  O(n^2)
 # Space: O(n)
-class Solution3(object):
+class Solution4(object):
     def fallingSquares(self, positions):
         """
         :type positions: List[List[int]]

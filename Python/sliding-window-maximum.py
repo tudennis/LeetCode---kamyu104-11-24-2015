@@ -19,7 +19,7 @@
 #  1  3  -1  -3  5 [3  6  7]      7
 # Therefore, return the max sliding window as [3,3,5,5,6,7].
 #
-# Note: 
+# Note:
 # You may assume k is always valid, ie: 1 <= k <= input array's size for non-empty array.
 #
 # Follow up:
@@ -41,7 +41,7 @@ class Solution(object):
             while dq and nums[i] >= nums[dq[-1]]:
                 dq.pop()
             dq.append(i)
-            if i >= k and dq and dq[0] <= i - k:
+            if i >= k and dq and dq[0] == i - k:
                 dq.popleft()
             if i >= k - 1:
                 max_numbers.append(nums[dq[0]])

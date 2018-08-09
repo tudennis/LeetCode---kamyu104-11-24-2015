@@ -1,16 +1,17 @@
+from __future__ import print_function
 # Time:  O(m + n)
 # Space: O(1)
 #
 # Implement wildcard pattern matching with support for '?' and '*'.
-# 
+#
 # '?' Matches any single character.
 # '*' Matches any sequence of characters (including the empty sequence).
-# 
+#
 # The matching should cover the entire input string (not partial).
-# 
+#
 # The function prototype should be:
 # bool isMatch(const char *s, const char *p)
-# 
+#
 # Some examples:
 # isMatch("aa","a") -> false
 # isMatch("aa","aa") -> true
@@ -42,12 +43,12 @@ class Solution:
                 p_ptr = last_p_ptr
             else:
                 return False
-            
+
         while p_ptr < len(p) and p[p_ptr] == '*':
             p_ptr += 1
-        
+
         return p_ptr == len(p)
-    
+
 # dp with rolling window
 # Time:  O(m * n)
 # Space: O(m + n)
@@ -68,7 +69,7 @@ class Solution2:
                     result[i % k][j] = result[(i-1) % k][j-1] and (s[i-1] == p[j-1] or p[j-1] == '?')
                 else:
                     result[i % k][j] = result[i % k][j-1] or result[(i-1) % k][j]
-                    
+
         return result[len(s) % k][len(p)]
 
 # dp
@@ -90,7 +91,7 @@ class Solution3:
                     result[i][j] = result[i-1][j-1] and (s[i-1] == p[j-1] or p[j-1] == '?')
                 else:
                     result[i][j] = result[i][j-1] or result[i-1][j]
-                    
+
         return result[len(s)][len(p)]
 
 
@@ -100,7 +101,7 @@ class Solution4:
     def isMatch(self, s, p):
         if not p or not s:
             return not s and not p
-        
+
         if p[0] != '*':
             if p[0] == s[0] or p[0] == '?':
                 return self.isMatch(s[1:], p[1:])
@@ -114,12 +115,12 @@ class Solution4:
             return self.isMatch(s, p[1:])
 
 if __name__ == "__main__":
-    print Solution().isMatch("aaaabaaaab","a*b*b")
-    print Solution().isMatch("aaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*c")
-    print Solution().isMatch("aa","a")
-    print Solution().isMatch("aa","aa")
-    print Solution().isMatch("aaa","aa")
-    print Solution().isMatch("aa", "a*")
-    print Solution().isMatch("aa", "?*")
-    print Solution().isMatch("ab", "?*")
-    print Solution().isMatch("aab", "c*a*b")
+    print(Solution().isMatch("aaaabaaaab","a*b*b"))
+    print(Solution().isMatch("aaaaaaaaaaaaab", "a*a*a*a*a*a*a*a*a*a*c"))
+    print(Solution().isMatch("aa","a"))
+    print(Solution().isMatch("aa","aa"))
+    print(Solution().isMatch("aaa","aa"))
+    print(Solution().isMatch("aa", "a*"))
+    print(Solution().isMatch("aa", "?*"))
+    print(Solution().isMatch("ab", "?*"))
+    print(Solution().isMatch("aab", "c*a*b"))

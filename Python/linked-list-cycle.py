@@ -1,8 +1,9 @@
+from __future__ import print_function
 # Time:  O(n)
 # Space: O(1)
 #
 # Given a linked list, determine if it has a cycle in it.
-# 
+#
 # Follow up:
 # Can you solve it without using extra space?
 #
@@ -29,4 +30,4 @@ if __name__ == "__main__":
     head.next = ListNode(2)
     head.next.next = ListNode(3)
     head.next.next.next = head.next
-    print Solution().hasCycle(head)
+    print(Solution().hasCycle(head))

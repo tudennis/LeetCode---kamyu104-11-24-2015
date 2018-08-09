@@ -1,6 +1,7 @@
+from __future__ import print_function
 # Time:  O(logn) = O(1)
 # Space: O(1)
-# 
+#
 # Divide two integers without using multiplication, division and mod operator.
 
 
@@ -44,9 +45,9 @@ class Solution:
         if not positive:
             res = -res
         return min(max(-2147483648, res), 2147483647)
-        
+
 if __name__ == "__main__":
-    print Solution().divide(123, 12)
-    print Solution().divide(123, -12)
-    print Solution().divide(-123, 12)
-    print Solution().divide(-123, -12)
+    print(Solution().divide(123, 12))
+    print(Solution().divide(123, -12))
+    print(Solution().divide(-123, 12))
+    print(Solution().divide(-123, -12))

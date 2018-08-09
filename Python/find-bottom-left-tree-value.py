@@ -12,7 +12,7 @@
 #
 # Output:
 # 1
-# Example 2: 
+# Example 2:
 # Input:
 #
 #         1
@@ -61,7 +61,8 @@ class Solution2(object):
         :type root: TreeNode
         :rtype: int
         """
-        queue = [root]
-        for node in queue:
-            queue += filter(None, (node.right, node.left))
-        return node.val
+        last_node, queue = None, [root]
+        while queue:
+            last_node = queue.pop(0)
+            queue.extend([n for n in [last_node.right, last_node.left] if n])
+        return last_node.value

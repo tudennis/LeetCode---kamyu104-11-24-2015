@@ -1,8 +1,9 @@
+from __future__ import print_function
 # Time:  O(logn) = O(1)
 # Space: O(1)
 #
 # Given an integer n, return the number of trailing zeroes in n!.
-# 
+#
 # Note: Your solution should be in logarithmic time complexity.
 #
 
@@ -16,4 +17,4 @@ class Solution:
         return result
 
 if __name__ == "__main__":
-    print Solution().trailingZeroes(100)
+    print(Solution().trailingZeroes(100))

@@ -1,11 +1,12 @@
+from __future__ import print_function
 # Time:  O(n^2)
 # Space: O(1)
 #
 # Given numRows, generate the first numRows of Pascal's triangle.
-# 
+#
 # For example, given numRows = 5,
 # Return
-# 
+#
 # [
 #      [1],
 #     [1,1],
@@ -57,4 +58,4 @@ class Solution:
         return res
 
 if __name__ == "__main__":
-    print Solution().generate(5)
+    print(Solution().generate(5))

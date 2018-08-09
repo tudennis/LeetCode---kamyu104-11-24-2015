@@ -4,7 +4,7 @@
 # Design and implement a data structure for Least Frequently Used (LFU) cache.
 # It should support the following operations: get and put.
 #
-# get(key) - Get the value (will always be positive) of the key 
+# get(key) - Get the value (will always be positive) of the key
 # if the key exists in the cache, otherwise return -1.
 # put(key, value) - Set or insert the value if the key is not already present.
 # When the cache reaches its capacity,
@@ -31,6 +31,9 @@
 # cache.get(3);       // returns 3
 # cache.get(4);       // returns 4
 
+import collections
+
+
 class ListNode(object):
     def __init__(self, key, value, freq):
         self.key = key
@@ -44,15 +47,16 @@ class LinkedList(object):
     def __init__(self):
         self.head = None
         self.tail = None
-    
+
     def append(self, node):
+        node.next, node.prev = None, None  # avoid dirty node
         if self.head is None:
             self.head = node
         else:
             self.tail.next = node
             node.prev = self.tail
         self.tail = node
-            
+
     def delete(self, node):
         if node.prev:
             node.prev.next = node.next
@@ -62,7 +66,7 @@ class LinkedList(object):
             node.next.prev = node.prev
         else:
             self.tail = node.prev
-        del node
+        node.next, node.prev = None, None  # make node clean
 
 
 class LFUCache(object):
@@ -98,7 +102,7 @@ class LFUCache(object):
         self.__freq_to_nodes[self.__key_to_node[key].freq].append(self.__key_to_node[key])
 
         return self.__key_to_node[key].val
-        
+
 
     def put(self, key, value):
         """
@@ -112,14 +116,14 @@ class LFUCache(object):
         if self.get(key) != -1:
             self.__key_to_node[key].val = value
             return
-        
+
         if self.__size == self.__capa:
             del self.__key_to_node[self.__freq_to_nodes[self.__min_freq].head.key]
             self.__freq_to_nodes[self.__min_freq].delete(self.__freq_to_nodes[self.__min_freq].head)
             if not self.__freq_to_nodes[self.__min_freq].head:
                 del self.__freq_to_nodes[self.__min_freq]
             self.__size -= 1
-            
+
         self.__min_freq = 1
         self.__key_to_node[key] = ListNode(key, value, self.__min_freq)
         self.__freq_to_nodes[self.__key_to_node[key].freq].append(self.__key_to_node[key])

@@ -22,14 +22,15 @@
 #         self.left = None
 #         self.right = None
 
-class Solution:
+
+class Solution(object):
     # @param {TreeNode} root
     # @return {string[]}
     def binaryTreePaths(self, root):
         result, path = [], []
         self.binaryTreePathsRecu(root, path, result)
         return result
-    
+
     def binaryTreePathsRecu(self, node, path, result):
         if node is None:
             return

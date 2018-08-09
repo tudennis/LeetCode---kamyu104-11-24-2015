@@ -15,7 +15,7 @@
 # Input: [[1,2],[2,2],[4,2]]
 # Output: [[1,2],[2,2],[4,2]]
 #
-# Even you only have trees in a line, you need to use rope to enclose them. 
+# Even you only have trees in a line, you need to use rope to enclose them.
 # Note:
 #
 # All trees should be enclosed together.
@@ -23,7 +23,7 @@
 # All input integers will range from 0 to 100.
 # The garden has at least one tree.
 # All coordinates are distinct.
-#Input points have NO order. No order required for output.
+# Input points have NO order. No order required for output.
 
 # Definition for a point.
 # class Point(object):
@@ -31,6 +31,10 @@
 #         self.x = a
 #         self.y = b
 
+import itertools
+
+
+# Monotone Chain Algorithm
 class Solution(object):
     def outerTrees(self, points):
         """

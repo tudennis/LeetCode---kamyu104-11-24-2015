@@ -2,7 +2,8 @@
 # Space: O(h)
 
 # Given a non-empty binary tree,
-# return the average value of the nodes on each level in the form of an array.
+# return the average value of the nodes on each level in the form of
+# an array.
 #
 # Example 1:
 # Input:
@@ -26,6 +27,12 @@
 #         self.left = None
 #         self.right = None
 
+try:
+    xrange          # Python 2
+except NameError:
+    xrange = range  # Python 3
+
+
 class Solution(object):
     def averageOfLevels(self, root):
         """
@@ -33,18 +40,17 @@ class Solution(object):
         :rtype: List[float]
         """
         result = []
-        q = collections.deque([root])
+        q = [root]
         while q:
             total, count = 0, 0
-            next_q = collections.deque([])
-            while q:
-                n = q.popleft()
-                total += n.val;
+            next_q = []
+            for n in q:
+                total += n.val
                 count += 1
                 if n.left:
                     next_q.append(n.left)
                 if n.right:
                     next_q.append(n.right)
-            q, next_q = next_q, q
+            q = next_q
             result.append(float(total) / count)
         return result

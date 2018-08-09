@@ -1,14 +1,15 @@
+from __future__ import print_function
 # Time:  O(n * 2^n)
 # Space: O(1)
 
 # Given a set of distinct integers, S, return all possible subsets.
-# 
+#
 # Note:
 # Elements in a subset must be in non-descending order.
 # The solution set must not contain duplicate subsets.
 # For example,
 # If S = [1,2,3], a solution is:
-# 
+#
 # [
 #   [3],
 #   [1],
@@ -47,7 +48,7 @@ class Solution2(object):
         result = []
         i, count = 0, 1 << len(nums)
         nums.sort()
-        
+
         while i < count:
             cur = []
             for j in xrange(len(nums)):
@@ -55,7 +56,7 @@ class Solution2(object):
                     cur.append(nums[j])
             result.append(cur)
             i += 1
-            
+
         return result
 
 
@@ -68,13 +69,13 @@ class Solution3(object):
         :rtype: List[List[int]]
         """
         return self.subsetsRecu([], sorted(nums))
-    
+
     def subsetsRecu(self, cur, nums):
         if not nums:
             return [cur]
-        
+
         return self.subsetsRecu(cur, nums[1:]) + self.subsetsRecu(cur + [nums[0]], nums[1:])
 
 
 if __name__ == "__main__":
-    print Solution().subsets([1, 2, 3])
+    print(Solution().subsets([1, 2, 3]))

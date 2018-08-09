@@ -1,7 +1,7 @@
 # Time:  O(nlogn)
 # Space: O(n)
 #
-# Given an unsorted array of integers, 
+# Given an unsorted array of integers,
 # find the length of longest increasing subsequence.
 #
 # For example,
@@ -27,7 +27,7 @@ class Solution(object):
             left, right = 0, len(LIS) - 1
             # Find the first index "left" which satisfies LIS[left] >= target
             while left <= right:
-                mid = left + (right - left) / 2;
+                mid = left + (right - left) // 2
                 if LIS[mid] >= target:
                     right = mid - 1
                 else:

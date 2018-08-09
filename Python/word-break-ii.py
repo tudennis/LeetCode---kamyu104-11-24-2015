@@ -1,16 +1,17 @@
-# Time:  O(n * l^2 + n * r), l is the max length of the words, 
+from __future__ import print_function
+# Time:  O(n * l^2 + n * r), l is the max length of the words,
 #                            r is the number of the results.
 # Space: O(n^2)
 #
-# Given a string s and a dictionary of words dict, 
+# Given a string s and a dictionary of words dict,
 # add spaces in s to construct a sentence where each word is a valid dictionary word.
-# 
+#
 # Return all such possible sentences.
-# 
+#
 # For example, given
 # s = "catsanddog",
 # dict = ["cat", "cats", "and", "sand", "dog"].
-# 
+#
 # A solution is ["cats and dog", "cat sand dog"].
 #
 
@@ -40,7 +41,7 @@ class Solution(object):
         if can_break[-1]:
             self.wordBreakHelper(s, valid, 0, [], result)
         return result
-    
+
     def wordBreakHelper(self, s, valid, start, path, result):
         if start == len(s):
             result.append(" ".join(path))
@@ -53,4 +54,4 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-    print Solution().wordBreak("catsanddog", ["cat", "cats", "and", "sand", "dog"])
+    print(Solution().wordBreak("catsanddog", ["cat", "cats", "and", "sand", "dog"]))

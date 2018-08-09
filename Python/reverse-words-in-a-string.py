@@ -1,14 +1,15 @@
+from __future__ import print_function
 # Time:  O(n)
 # Space: O(n)
 #
 # Given an input string, reverse the string word by word.
-# 
+#
 # For example,
 # Given s = "the sky is blue",
 # return "blue is sky the".
-# 
+#
 # click to show clarification.
-# 
+#
 # Clarification:
 # What constitutes a word?
 # A sequence of non-space characters constitutes a word.
@@ -25,4 +26,4 @@ class Solution:
         return ' '.join(reversed(s.split()))
 
 if __name__ == '__main__':
-    print Solution().reverseWords('hello world')
+    print(Solution().reverseWords('hello world'))

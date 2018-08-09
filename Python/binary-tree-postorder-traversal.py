@@ -15,8 +15,9 @@
 # Note: Recursive solution is trivial, could you do it iteratively?
 #
 
+
 # Definition for a  binary tree node
-class TreeNode:
+class TreeNode(object):
     def __init__(self, x):
         self.val = x
         self.left = None
@@ -40,7 +41,7 @@ class Solution(object):
                 node = cur.left
                 while node.right and node.right != cur:
                     node = node.right
-            
+
                 if node.right is None:
                     node.right = cur
                     cur = cur.left
@@ -48,9 +49,9 @@ class Solution(object):
                     result += self.traceBack(cur.left, node)
                     node.right = None
                     cur = cur.right
-        
+
         return result
-    
+
     def traceBack(self, frm, to):
         result, cur = [], frm
         while cur is not to:
@@ -63,7 +64,7 @@ class Solution(object):
 
 # Time:  O(n)
 # Space: O(h)
-# Stack Solution 
+# Stack Solution
 class Solution2(object):
     def postorderTraversal(self, root):
         """
@@ -82,11 +83,3 @@ class Solution2(object):
                 stack.append((root.right, False))
                 stack.append((root.left, False))
         return result
-
-
-if __name__ == "__main__":
-    root = TreeNode(1)
-    root.right = TreeNode(2)
-    root.right.left = TreeNode(3)
-    result = Solution().postorderTraversal(root)
-    print result

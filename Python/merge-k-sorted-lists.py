@@ -1,3 +1,4 @@
+from __future__ import print_function
 # Time:  O(nlogk)
 # Space: O(1)
 
@@ -67,7 +68,7 @@ class Solution2:
                 curr = curr.next
             curr.next = l1 or l2
             return dummy.next
-    
+
         def mergeKListsHelper(lists, begin, end):
             if begin > end:
                 return None
@@ -75,7 +76,7 @@ class Solution2:
                 return lists[begin]
             return mergeTwoLists(mergeKListsHelper(lists, begin, (begin + end) / 2), \
                                  mergeKListsHelper(lists, (begin + end) / 2 + 1, end))
-   
+
         return mergeKListsHelper(lists, 0, len(lists) - 1)
 
 
@@ -89,19 +90,19 @@ class Solution3:
     def mergeKLists(self, lists):
         dummy = ListNode(0)
         current = dummy
-        
+
         heap = []
         for sorted_list in lists:
             if sorted_list:
                 heapq.heappush(heap, (sorted_list.val, sorted_list))
-                
+
         while heap:
             smallest = heapq.heappop(heap)[1]
             current.next = smallest
             current = current.next
             if smallest.next:
                 heapq.heappush(heap, (smallest.next.val, smallest.next))
-                
+
         return dummy.next
 
 
@@ -110,5 +111,5 @@ if __name__ == "__main__":
     list1.next = ListNode(3)
     list2 = ListNode(2)
     list2.next = ListNode(4)
-    
-    print Solution().mergeKLists([list1, list2])
+
+    print(Solution().mergeKLists([list1, list2]))

@@ -1,10 +1,11 @@
+from __future__ import print_function
 # Time:  O(n)
 # Space: O(n)
 #
-# Given n non-negative integers representing the histogram's bar 
+# Given n non-negative integers representing the histogram's bar
 # height where the width of each bar is 1,
 # find the area of largest rectangle in the histogram.
-# 
+#
 # For example,
 # Given height = [2,1,5,6,2,3],
 # return 10.
@@ -28,6 +29,6 @@ class Solution:
         return area
 
 if __name__ == "__main__":
-    print Solution().largestRectangleArea([2, 0, 2])
-    print Solution().largestRectangleArea([2, 1, 5, 6, 2, 3])
-        
+    print(Solution().largestRectangleArea([2, 0, 2]))
+    print(Solution().largestRectangleArea([2, 1, 5, 6, 2, 3]))
+

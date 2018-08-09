@@ -1,11 +1,12 @@
+from __future__ import print_function
 # Time:  O(n^2)
 # Space: O(1)
 #
 # Given an integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
-# 
+#
 # For example,
 # Given n = 3,
-# 
+#
 # You should return the following matrix:
 # [
 #  [ 1, 2, 3 ],
@@ -18,9 +19,9 @@ class Solution:
     # @return a list of lists of integer
     def generateMatrix(self, n):
         matrix = [[0 for _ in xrange(n)] for _ in xrange(n)]
-        
+
         left, right, top, bottom, num = 0, n - 1, 0, n - 1, 1
-        
+
         while left <= right and top <= bottom:
             for j in xrange(left, right + 1):
                 matrix[top][j] = num
@@ -37,10 +38,10 @@ class Solution:
                     matrix[i][left] = num
                     num += 1
             left, right, top, bottom = left + 1, right - 1, top + 1, bottom - 1
-            
+
         return matrix
 
 
 if __name__ == "__main__":
-    print Solution().generateMatrix(3)
-    print Solution().generateMatrix(8)
+    print(Solution().generateMatrix(3))
+    print(Solution().generateMatrix(8))

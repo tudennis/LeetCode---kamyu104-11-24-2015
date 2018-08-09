@@ -1,12 +1,13 @@
+from __future__ import print_function
 # Time:  O(n * 4^n)
 # Space: O(n)
 #
 # Given a digit string, return all possible letter combinations that the number could represent.
-# 
+#
 # A mapping of digit to letters (just like on the telephone buttons) is given below.
-# 
+#
 # lookup = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
-# 
+#
 # Input:Digit string "23"
 # Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 # Note:
@@ -19,18 +20,18 @@ class Solution:
     def letterCombinations(self, digits):
         if not digits:
             return []
-            
+
         lookup, result = ["", "", "abc", "def", "ghi", "jkl", "mno", \
                           "pqrs", "tuv", "wxyz"], [""]
 
         for digit in reversed(digits):
             choices = lookup[int(digit)]
             m, n = len(choices), len(result)
-            result += [result[i % n] for i in xrange(n, m * n)]    
+            result += [result[i % n] for i in xrange(n, m * n)]
 
             for i in xrange(m * n):
-                result[i] = choices[i / n] + result[i] 
-            
+                result[i] = choices[i / n] + result[i]
+
         return result
 
 
@@ -46,7 +47,7 @@ class Solution2:
                           "pqrs", "tuv", "wxyz"], []
         self.letterCombinationsRecu(result, digits, lookup, "", 0)
         return result
-    
+
     def letterCombinationsRecu(self, result, digits, lookup, cur, n):
         if n == len(digits):
             result.append(cur)
@@ -55,4 +56,4 @@ class Solution2:
                 self.letterCombinationsRecu(result, digits, lookup, cur + choice, n + 1)
 
 if __name__ == "__main__":
-    print Solution().letterCombinations("23")
+    print(Solution().letterCombinations("23"))
